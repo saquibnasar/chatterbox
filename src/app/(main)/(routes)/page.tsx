@@ -8,6 +8,8 @@ export default function Home() {
         <UserButton afterSignOutUrl="/" />
       </SignedIn>
       <ModeToggle />
+
+      <h1 className="text-indigo-600">Home Page</h1>
     </>
   );
 }
