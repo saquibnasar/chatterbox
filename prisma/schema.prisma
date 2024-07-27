@@ -35,6 +35,8 @@ model Profile {
   email     String  @db.Text 
 
   server    Server[]
+  member    Member[]
+  channels  Channels[]
   
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -46,26 +48,62 @@ name String
 imageUrl String @db. Text inviteCode String @db. Text
 profileld String
 profile Profile @relation (fields:references: profileldle references:id.Lidl, onDe onDelete: Cascade)
+
+member Member[]
+channels  Channels[]
+
+createdAt DateTime @default(now())
+updatedAt DateTime @updatedAt
+
+@@index([profileId])
 }
 
+enum MemberRole{
+  ADMIN 
+  MODERATER
+  GUEST 
+
+}
+model Member {
+id String @id @default (uuid()) 
+role MemberRole @default (GUEST)
+
+profileld String
+profile Profile @relation(fields: [profileIdl, references: [idl, onDelete: Cascade)
+
+serverId String
+server Server @relation(fields: [serverIdl, references: [idl, onDelete: Cascade)
+
+createdAt DateTime @default (now())
+updatedAt DateTime @updatedAt
+
+@@index ([profileId])
+@@index ([serverId])
+}
+
+enum ChannelType {
+TEXT
+AUDIO 
+VIDEO
+}
+
+model Channel {
+id String @id @default(uuid())
+name String
+type ChannelType @default (TEXT)
+
+profileld String
+profile Profile @relation(fields: [profileid, references: [id, onDelete: Cascade)
+
+serverId String
+server Server @relation(fields: [serverid, references: [id, onDelete: Cascade)
+
+createdAt DateTime @default (now())
+updatedAt DateTime @updatedAt
+
+@@index ([profileId])
+@@index ([serverId])
+
+}
 // end 
 
-model Order {
-  id               String   @id @default(uuid())
-  pricePaidInCents Int
-  createdAt        DateTime @default(now())
-  updatedAt        DateTime @updatedAt
-
-  userId    String
-  productId String
-  user      User    @relation(fields: [userId], references: [id], onDelete: Cascade)
-  product   Product @relation(fields: [productId], references: [id], onDelete: Restrict)
-}
-
-model DownloadVerification {
-  id        String   @id @default(uuid())
-  expiresAt DateTime
-  createdAt DateTime @default(now())
-  productId String
-  product   Product  @relation(fields: [productId], references: [id], onDelete: Cascade)
-}
