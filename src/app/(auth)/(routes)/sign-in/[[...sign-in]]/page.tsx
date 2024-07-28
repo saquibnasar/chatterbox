@@ -1,4 +1,4 @@
-import { SignIn } from "@clerk/nextjs";
+import { SignIn, RedirectToSignIn } from "@clerk/nextjs";
 
 export default function Page() {
   return <SignIn />;
