@@ -31,7 +31,7 @@ inviteCode String @unique
 profileId String
 profile Profile @relation(fields: [profileId], references: [id], onDelete: Cascade)
 
-memsber Members[]
+member Members[]
 channel  Channel[]
 
 createdAt DateTime @default(now())
