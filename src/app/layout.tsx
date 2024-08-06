@@ -26,7 +26,7 @@ export default function RootLayout({
             enableSystem={false}
             storageKey="Chatterbox"
           >
-            test
+            test test
             {children}
           </ThemeProvider>
         </body>
