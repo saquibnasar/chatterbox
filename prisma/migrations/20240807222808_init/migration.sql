@@ -22,14 +22,14 @@ CREATE TABLE "Server" (
 );
 
 -- CreateTable
-CREATE TABLE "Member" (
+CREATE TABLE "Members" (
     "id" TEXT NOT NULL PRIMARY KEY,
     "profileId" TEXT NOT NULL,
     "serverId" TEXT NOT NULL,
     "createdAt" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" DATETIME NOT NULL,
-    CONSTRAINT "Member_profileId_fkey" FOREIGN KEY ("profileId") REFERENCES "Profile" ("id") ON DELETE CASCADE ON UPDATE CASCADE,
-    CONSTRAINT "Member_serverId_fkey" FOREIGN KEY ("serverId") REFERENCES "Server" ("id") ON DELETE CASCADE ON UPDATE CASCADE
+    CONSTRAINT "Members_profileId_fkey" FOREIGN KEY ("profileId") REFERENCES "Profile" ("id") ON DELETE CASCADE ON UPDATE CASCADE,
+    CONSTRAINT "Members_serverId_fkey" FOREIGN KEY ("serverId") REFERENCES "Server" ("id") ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 -- CreateTable
@@ -63,10 +63,10 @@ CREATE UNIQUE INDEX "Server_inviteCode_key" ON "Server"("inviteCode");
 CREATE INDEX "Server_profileId_idx" ON "Server"("profileId");
 
 -- CreateIndex
-CREATE INDEX "Member_profileId_idx" ON "Member"("profileId");
+CREATE INDEX "Members_profileId_idx" ON "Members"("profileId");
 
 -- CreateIndex
-CREATE INDEX "Member_serverId_idx" ON "Member"("serverId");
+CREATE INDEX "Members_serverId_idx" ON "Members"("serverId");
 
 -- CreateIndex
 CREATE INDEX "Channel_profileId_idx" ON "Channel"("profileId");
