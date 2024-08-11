@@ -1,4 +1,5 @@
 "use client";
+
 import { UploadButton, UploadDropzone } from "@/lib/uploadThing";
 import "@uploadthing/react/styles.css";
 // import { Uploader } from "@uploadthing/solid";
@@ -17,7 +18,8 @@ export default function FileUpload({
   endPoint,
 }: FileUploadProps) {
   const fileTYpe = value.split(".").pop();
-  if ((value && fileTYpe) !== "pdf") {
+
+  if (value && fileTYpe !== "pdf") {
     return (
       <div className="relative h-20 w-20">
         <Image fill src={value} alt="upload" className="rounded-full " />
@@ -36,11 +38,11 @@ export default function FileUpload({
       <UploadDropzone
         endpoint={endPoint}
         onClientUploadComplete={(res) => {
-          console.log("Files: ", res);
-          alert("Upload Completed");
+          onChange(res?.[0].url);
+          console.log("Upload Completed");
         }}
         onUploadError={(error: Error) => {
-          alert(`ERROR! ${error.message}`);
+          console.log(`ERROR! ${error.message}`);
         }}
       />
     </>

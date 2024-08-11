@@ -17,6 +17,9 @@ import { Form, FormControl, FormField, FormItem, FormLabel } from "../ui/form";
 import { Input } from "../ui/input";
 import { Button } from "../ui/button";
 import FileUpload from "@/components/fileUpload";
+import axios from "axios";
+import { useRouter } from "next/navigation";
+// import { error } from "console";
 
 const formSchema = z.object({
   name: z.string().min(1, {
@@ -28,6 +31,7 @@ const formSchema = z.object({
 });
 export default function InitialModal() {
   const [isMounted, setIsMounted] = useState(false);
+  const router = useRouter();
   useEffect(() => {
     setIsMounted(true);
   }, []);
@@ -42,8 +46,15 @@ export default function InitialModal() {
   const isLoading = form.formState.isSubmitting;
 
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
-    console.log("fds");
-    console.log(values);
+    try {
+      await axios.post("/api/servers", values);
+
+      form.reset();
+      router.refresh();
+      window.location.reload();
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   if (!isMounted) {
@@ -67,7 +78,7 @@ export default function InitialModal() {
               <div className="space-y-8 px-6">
                 <div className="flex items-center justify-center text-center ">
                   <FormField
-                    // control={form.control}
+                    control={form.control}
                     name="imageUrl"
                     render={({ field }) => {
                       return (
