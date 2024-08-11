@@ -2,8 +2,12 @@ import type { Metadata } from "next";
 import { Open_Sans } from "next/font/google";
 import "./globals.css";
 import { cn } from "@/lib/utils";
-import { ClerkProvider } from "@clerk/nextjs";
+import { ClerkProvider, SignedIn, SignedOut, SignIn } from "@clerk/nextjs";
 import { ThemeProvider } from "@/components/providers/theme-provider";
+import { NextSSRPlugin } from "@uploadthing/react/next-ssr-plugin";
+import { extractRouterConfig } from "uploadthing/server";
+
+import { ourFileRouter } from "@/app/api/uploadthing/core";
 const inter = Open_Sans({ subsets: ["latin"], variable: "--font-sans" });
 
 export const metadata: Metadata = {
@@ -26,7 +30,11 @@ export default function RootLayout({
             enableSystem={false}
             storageKey="Chatterbox"
           >
-            {children}
+            <NextSSRPlugin routerConfig={extractRouterConfig(ourFileRouter)} />
+            <SignedOut>
+              <SignIn routing="hash" />f
+            </SignedOut>
+            <SignedIn>{children}</SignedIn>
           </ThemeProvider>
         </body>
       </html>

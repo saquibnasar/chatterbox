@@ -42,6 +42,7 @@ export default function InitialModal() {
   const isLoading = form.formState.isSubmitting;
 
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
+    console.log("fds");
     console.log(values);
   };
 
@@ -66,7 +67,7 @@ export default function InitialModal() {
               <div className="space-y-8 px-6">
                 <div className="flex items-center justify-center text-center ">
                   <FormField
-                    control={form.control}
+                    // control={form.control}
                     name="imageUrl"
                     render={({ field }) => {
                       return (
@@ -104,7 +105,7 @@ export default function InitialModal() {
                 />
               </div>
               <DialogFooter className="bg-gray-100 px-6 py-4">
-                <Button variant={"primary"} disabled={isLoading}>
+                <Button type="submit" variant={"primary"} disabled={isLoading}>
                   Create
                 </Button>
               </DialogFooter>
