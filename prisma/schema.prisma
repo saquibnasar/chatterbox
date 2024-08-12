@@ -39,16 +39,19 @@ updatedAt DateTime @updatedAt
 
 @@index([profileId])
 }
+// CREATE TABLE MemberRole (
+// pType      TEXT CHECK( pType IN ('ADMIN','MODERATER','g') )   NOT NULL DEFAULT 'M',
+// )
 
- enum MemberRole{
-  ADMIN 
- MODERATER
-  GUEST 
-    }
+// model MemberRole{
+//  ADMIN 
+// MODERATER
+//  GUEST 
+//    }
 
 model Members {
 id String @id @default (uuid()) 
- role MemberRole @default (GUEST)
+role String
 
 profileId String
 profile Profile @relation(fields: [profileId], references: [id], onDelete: Cascade)
@@ -64,8 +67,8 @@ updatedAt DateTime @updatedAt
 }
 
 // enum ChannelType {
-// TEXT
-// AUDIO 
+ // TEXT
+//  AUDIO 
 // VIDEO
 // }
 

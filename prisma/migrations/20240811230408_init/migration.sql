@@ -24,6 +24,7 @@ CREATE TABLE "Server" (
 -- CreateTable
 CREATE TABLE "Members" (
     "id" TEXT NOT NULL PRIMARY KEY,
+    "role" TEXT NOT NULL,
     "profileId" TEXT NOT NULL,
     "serverId" TEXT NOT NULL,
     "createdAt" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
