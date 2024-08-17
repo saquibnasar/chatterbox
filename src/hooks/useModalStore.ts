@@ -3,9 +3,9 @@ import { create } from "zustand";
 export type ModalTypes = "createServer";
 
 type ModalStore = {
-  type: ModalStore | null;
+  type: ModalTypes | null;
   isOpen: boolean;
-  onOpen: (type: ModalStore) => void;
+  onOpen: (type: ModalTypes) => void;
   onClose: () => void;
 };
 export const useModal = create<ModalStore>((set) => ({

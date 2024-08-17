@@ -3,6 +3,7 @@ import { cn } from "@/lib/utils";
 import ActionTooltip from "../actionTooltip";
 import { useParams, useRouter } from "next/navigation";
 import Image from "next/image";
+import Link from "next/link";
 
 type NavigationItemProps = {
   id: string;
@@ -18,13 +19,14 @@ export default function NavigationItem({
   const router = useRouter();
 
   const onClick = () => {
-    router.push(`/server/${id}`);
+    router.push(`/servers/${id}`);
   };
 
   return (
     <>
       <ActionTooltip side="right" align="center" label={name}>
-        <button
+        <Link
+          href={`/servers/${id}`}
           onClick={() => onClick}
           className="gorup relative flex items-center"
         >
@@ -44,7 +46,7 @@ export default function NavigationItem({
           >
             <Image fill src={imageUrl} alt="channel" />
           </div>
-        </button>
+        </Link>
       </ActionTooltip>
     </>
   );

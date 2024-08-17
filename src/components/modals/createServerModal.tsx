@@ -1,4 +1,4 @@
-"use client";
+// "use client";
 import * as z from "zod";
 // import { ZodReadonly } from "zod";
 import { useForm } from "react-hook-form";
@@ -51,15 +51,21 @@ export default function CreateServerModal() {
 
       form.reset();
       router.refresh();
-      window.location.reload();
+      onClose();
+      // window.location.reload();
     } catch (error) {
       console.log(error);
     }
   };
 
+  const handleClose = () => {
+    form.reset();
+    onClose();
+  };
+
   return (
     <>
-      <Dialog open>
+      <Dialog open={isModalOpen} onOpenChange={handleClose}>
         <DialogContent className="bg-white text-black p-0 overflow-hidden">
           <DialogHeader className="pt-8 px-6">
             <DialogTitle className="text-2xl text-center font-bold">
