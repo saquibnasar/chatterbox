@@ -12,7 +12,6 @@ export default async function ServerIdLayout({
   params: { serverId: string };
 }) {
   const profile = await currentProfile();
-
   if (!profile) {
     return <RedirectToSignIn />;
   }
@@ -34,7 +33,7 @@ export default async function ServerIdLayout({
   return (
     <div className="h-full">
       <div className="md:flex h-full w-60 z-20 flex-col fixed inset-y-0">
-        <ServerSidebar />
+        <ServerSidebar serverId={params.serverId} />
       </div>
       <main className="h-full md:pl-60">{children}</main>
     </div>
