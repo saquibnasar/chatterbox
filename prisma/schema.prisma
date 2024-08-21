@@ -41,15 +41,15 @@ updatedAt DateTime @updatedAt
 @@index([profileId])
 }
 
-// model MemberRole{
-//  ADMIN 
-// MODERATER
-//  GUEST 
-//    }
+ enum MemberRole{
+  ADMIN 
+ MODERATER
+  GUEST 
+    }
 
 model Members {
 id String @id @default (uuid()) 
-role String
+type MemberRole @default(GUEST)
 
 profileId String
 profile Profile @relation(fields: [profileId], references: [id], onDelete: Cascade)
