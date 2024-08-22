@@ -1,13 +1,14 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
 generator client {
   provider = "prisma-client-js"
 }
 
 datasource db {
-  provider = "mysql"
+  provider = "sqlite"
   url      = env("DATABASE_URL")
-  relationMode = "prisma"
 }
-
 model Profile {
   id        String   @id @default(uuid())
   userId    String   @unique
@@ -40,16 +41,19 @@ updatedAt DateTime @updatedAt
 
 @@index([profileId])
 }
+// CREATE TABLE MemberRole (
+// pType      TEXT CHECK( pType IN ('ADMIN','MODERATER','g') )   NOT NULL DEFAULT 'M',
+// )
 
- enum MemberRole{
-  ADMIN 
- MODERATER
-  GUEST 
-    }
+// model MemberRole{
+//  ADMIN 
+// MODERATER
+//  GUEST 
+//    }
 
 model Members {
 id String @id @default (uuid()) 
-type MemberRole @default(GUEST)
+role String
 
 profileId String
 profile Profile @relation(fields: [profileId], references: [id], onDelete: Cascade)
@@ -64,16 +68,16 @@ updatedAt DateTime @updatedAt
 @@index ([serverId])
 }
 
- enum ChannelType {
- TEXT
-  AUDIO 
- VIDEO
- }
+// enum ChannelType {
+ // TEXT
+//  AUDIO 
+// VIDEO
+// }
 
 model Channel {
 id String @id @default(uuid())
 name String
- type ChannelType @default(TEXT)
+// type ChannelType @default(TEXT)
 
 profileId String
 profile Profile @relation(fields: [profileId], references: [id], onDelete: Cascade)
@@ -87,4 +91,3 @@ updatedAt DateTime @updatedAt
 @@index ([profileId])
 @@index ([serverId])
 }
-
