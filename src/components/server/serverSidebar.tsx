@@ -1,6 +1,5 @@
 import db from "@/db/db";
 import currentProfile from "@/lib/currentProfile";
-import { ChannelType } from "@prisma/client";
 import { redirect } from "next/navigation";
 import ServerHeader from "./serverHeader";
 
