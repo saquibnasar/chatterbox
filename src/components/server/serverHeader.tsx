@@ -4,6 +4,7 @@ import { serverWithMembersWithProfile } from "../../../types";
 import {
   DropdownMenu,
   DropdownMenuContent,
+  DropdownMenuItem,
   DropdownMenuTrigger,
 } from "../ui/dropdown-menu";
 
@@ -31,7 +32,9 @@ export default function ServerHeader({ server, role }: ServerHeaderProps) {
         <DropdownMenuContent
           className="w-56 text-xs font-medium text-black
          dark:text-neutral-400 space-y-[2px]"
-        ></DropdownMenuContent>
+        >
+          {isModerator && <DropdownMenuItem>Invite people</DropdownMenuItem>}
+        </DropdownMenuContent>
       </DropdownMenu>
     </>
   );
