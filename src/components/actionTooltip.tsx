@@ -27,7 +27,6 @@ export default function ActionTooltip({
           <TooltipContent side={side} align={align}>
             <p className="font-semibold text-sm capitalize p-1 bg-black">
               {label.toLowerCase()}
-              test
             </p>
           </TooltipContent>
         </Tooltip>

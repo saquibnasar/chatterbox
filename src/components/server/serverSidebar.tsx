@@ -17,12 +17,12 @@ export default async function ServerSidebar({ serverId }: serverSidebarProps) {
       id: serverId,
     },
     include: {
-      channel: {
+      channels: {
         orderBy: {
           createdAt: "asc",
         },
       },
-      member: {
+      members: {
         include: {
           profile: true,
         },
@@ -33,24 +33,25 @@ export default async function ServerSidebar({ serverId }: serverSidebarProps) {
     },
   });
 
-  const textChannels = server?.channel.filter(
+  const textChannels = server?.channels.filter(
     (channel) => channel.type === "TEXT"
   );
-  const audioChannels = server?.channel.filter(
+  const audioChannels = server?.channels.filter(
     (channel) => channel.type === "AUDIO"
   );
-  const videoChannels = server?.channel.filter(
+  const videoChannels = server?.channels.filter(
     (channel) => channel.type === "VIDEO"
   );
-  const members = server?.member.filter(
+  const members = server?.members.filter(
     (member) => member.profileId !== profile.id
   );
   if (!server) {
     return redirect("/");
   }
-  const role = server?.member.filter(
-    (member) => member.profileId !== profile.id
-  )?.role;
+
+  const role = server?.members.filter((member) => {
+    return member.profileId !== profile.id;
+  })?.role;
 
   return (
     <>
@@ -58,7 +59,7 @@ export default async function ServerSidebar({ serverId }: serverSidebarProps) {
         className="flex flex-col h-full text-primary w-full dark:bg-[#2b2d31]
        bg-[#f2f3f5]"
       >
-        <ServerHeader server={server} role={role} />
+        <ServerHeader server={server} role={"ADMIN"} />
       </div>
     </>
   );

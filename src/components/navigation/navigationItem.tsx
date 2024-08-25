@@ -44,7 +44,7 @@ export default function NavigationItem({
                 "bg-primary/10 text-primary rounded-[16px]"
             )}
           >
-            <Image fill src={imageUrl} alt="channel" />
+            <Image fill src={imageUrl} sizes="16x16" alt="channel" />
           </div>
         </Link>
       </ActionTooltip>
