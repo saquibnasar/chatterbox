@@ -49,9 +49,9 @@ export default async function ServerSidebar({ serverId }: serverSidebarProps) {
     return redirect("/");
   }
 
-  const role = server?.members.filter((member) => {
-    return member.profileId !== profile.id;
-  })?.role;
+  const role = server?.members.filter(
+    (member) => member.serverId !== profile.id
+  )[0].role;
 
   return (
     <>
@@ -59,7 +59,7 @@ export default async function ServerSidebar({ serverId }: serverSidebarProps) {
         className="flex flex-col h-full text-primary w-full dark:bg-[#2b2d31]
        bg-[#f2f3f5]"
       >
-        <ServerHeader server={server} role={"ADMIN"} />
+        <ServerHeader server={server} role={role} />
       </div>
     </>
   );

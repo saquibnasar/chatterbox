@@ -19,13 +19,14 @@ import { DropdownMenuSeparator } from "@radix-ui/react-dropdown-menu";
 
 type ServerHeaderProps = {
   server: serverWithMembersWithProfile;
-  role?: "ADMIN" | "GUEST" | "MODERATOR";
+  role?: "ADMIN" | "GUEST" | "MODERATOR" | string;
 };
 
 export default function ServerHeader({ server, role }: ServerHeaderProps) {
-  console.log(role);
   const isAdmin = role === "ADMIN";
+
   const isModerator = isAdmin || role === "MODERATOR";
+
   return (
     <>
       <DropdownMenu>
