@@ -48,6 +48,7 @@ export default function ServerHeader({ server, role }: ServerHeaderProps) {
         >
           {isModerator && (
             <DropdownMenuItem
+              onClick={() => onOpen("invite", { server })}
               className="text-indigo-600 dark:text-indigo-400 px-3 py-2 
             text-sm cursor-pointer"
             >

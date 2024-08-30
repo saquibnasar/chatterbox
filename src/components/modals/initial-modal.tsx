@@ -19,7 +19,6 @@ import { Button } from "../ui/button";
 import FileUpload from "@/components/fileUpload";
 import axios from "axios";
 import { useRouter } from "next/navigation";
-// import { error } from "console";
 
 const formSchema = z.object({
   name: z.string().min(1, {
