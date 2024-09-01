@@ -31,7 +31,7 @@ export default function RootLayout({
             enableSystem={false}
             storageKey="Chatterbox"
           >
-            <NextSSRPlugin routerConfig={extractRouterConfig(ourFileRouter)} />
+            {/* <NextSSRPlugin routerConfig={extractRouterConfig(ourFileRouter)} /> */}
             <SignedOut>
               <SignIn routing="hash" />f
             </SignedOut>

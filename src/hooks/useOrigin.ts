@@ -9,5 +9,8 @@ export const useOrigin = () => {
     typeof window !== "undefined" && window.location.origin
       ? window.location.origin
       : "";
+  if (!mounted) {
+    return "";
+  }
   return origin;
 };
