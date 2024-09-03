@@ -33,7 +33,7 @@ export default function RootLayout({
           >
             {/* <NextSSRPlugin routerConfig={extractRouterConfig(ourFileRouter)} /> */}
             <SignedOut>
-              <SignIn routing="hash" />f
+              <SignIn routing="hash" />
             </SignedOut>
 
             <SignedIn>

@@ -39,7 +39,7 @@ export default function InviteModal() {
     try {
       setIsLoading(true);
       const response = await axios.patch(
-        `api/servers/${server?.id}/invite-code`
+        `/api/servers/${server?.id}/invite-code`
       );
       onOpen("invite", { server: response.data });
     } catch (error) {
@@ -71,6 +71,7 @@ export default function InviteModal() {
                   className="bg-zinc-300/50 border-0 focus-visible:ring-0
                  text-black focus-visible:ring-offset-0"
                   value={inviteUrl}
+                  onChange={() => {}}
                 />
                 <Button disabled={isLoading} onClick={onCopy} size="icon">
                   {copied ? <Check /> : <Copy className="" />}

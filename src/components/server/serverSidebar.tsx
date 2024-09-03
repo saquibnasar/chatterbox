@@ -50,7 +50,7 @@ export default async function ServerSidebar({ serverId }: serverSidebarProps) {
   }
 
   const role = server?.members.filter(
-    (member) => member.serverId !== profile.id
+    (member) => member.profileId === profile.id
   )[0].role;
 
   return (
