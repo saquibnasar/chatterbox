@@ -11,6 +11,9 @@ import { serverWithMembersWithProfile } from "../../../types";
 import { ScrollArea } from "../ui/scroll-area";
 import UserAvatar from "../ui/UserAvatar";
 import {
+  Check,
+  Gavel,
+  Loader2,
   MoreVertical,
   Shield,
   ShieldAlert,
@@ -23,6 +26,7 @@ import {
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuPortal,
+  DropdownMenuSeparator,
   DropdownMenuSub,
   DropdownMenuSubContent,
   DropdownMenuSubTrigger,
@@ -40,10 +44,21 @@ export default function MembersModal() {
   const isModalOpen = isOpen && type === "members";
   const { server } = data as { server: serverWithMembersWithProfile };
 
+  const onRoleChange = async (
+    memberId: string,
+    role: "ADMIN" | "GUEST" | "MODERATOR"
+  ) => {
+    try {
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setLoadingId("");
+    }
+  };
   return (
     <>
       <Dialog open={isModalOpen} onOpenChange={onClose}>
-        <DialogContent className="bg-white text-black p-0 overflow-hidden">
+        <DialogContent className="bg-white text-black overflow-hidden">
           <DialogHeader className="pt-8 px-6">
             <DialogTitle className="text-2xl text-center font-bold">
               Mangeg Members
@@ -84,14 +99,32 @@ export default function MembersModal() {
                                   <DropdownMenuSubContent>
                                     <DropdownMenuItem>
                                       <Shield className="h-4 w-4 mr-2" /> GUEST
+                                      {member.role === "GUEST" && (
+                                        <Check className="h-4 w-4 ml-auto" />
+                                      )}
+                                    </DropdownMenuItem>
+                                    <DropdownMenuItem>
+                                      <ShieldCheck className="h-4 w-4 mr-2" />{" "}
+                                      Moderator
+                                      {member.role === "MODERATOR" && (
+                                        <Check className="h-4 w-4 ml-auto" />
+                                      )}
                                     </DropdownMenuItem>
                                   </DropdownMenuSubContent>
                                 </DropdownMenuPortal>
                               </DropdownMenuSub>
+                              <DropdownMenuSeparator />
+                              <DropdownMenuItem>
+                                <Gavel className="h-4 w-4 mr-2" />
+                                Kick
+                              </DropdownMenuItem>
                             </DropdownMenuContent>
                           </DropdownMenu>
                         </div>
                       )}
+                    {loadingId === member.id && (
+                      <Loader2 className="animate-spin text-zinc-500 ml-auto w-4 h-4" />
+                    )}
                   </div>
                 ))}
               </ScrollArea>

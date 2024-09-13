@@ -1,3 +1,3 @@
 export default function ServerIdPage() {
-  return <div>page</div>;
+  return <div> page</div>;
 }
