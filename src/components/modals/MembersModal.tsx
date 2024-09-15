@@ -20,7 +20,7 @@ import {
   ShieldCheck,
   ShieldQuestion,
 } from "lucide-react";
-import { useState } from "react";
+import { ReactElement, useState } from "react";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -32,11 +32,18 @@ import {
   DropdownMenuSubTrigger,
   DropdownMenuTrigger,
 } from "../ui/dropdown-menu";
-const roleIconMap = {
+
+interface types {
+  GUEST: null;
+  MODERATOR: ReactElement;
+  ADMIN: ReactElement;
+}
+const roleIconMap: types = {
   GUEST: null,
   MODERATOR: <ShieldCheck className="h-4 w-4 ml-2 text-indigo-500" />,
   ADMIN: <ShieldAlert className="h-4 w-4 text-rose-500" />,
 };
+
 export default function MembersModal() {
   const { isOpen, onClose, type, data, onOpen } = useModal();
   const [loadingId, setLoadingId] = useState("");
@@ -49,6 +56,7 @@ export default function MembersModal() {
     role: "ADMIN" | "GUEST" | "MODERATOR"
   ) => {
     try {
+      setLoadingId(memberId);
     } catch (error) {
       console.log(error);
     } finally {
@@ -76,7 +84,16 @@ export default function MembersModal() {
                     <UserAvatar src={member.profile.imageUrl} />
                     <div className="flex flex-col gap-y-1">
                       <div className="text-xs font-semibold flex items-center">
-                        {member.profile.name} {roleIconMap[member.role]}
+                        {member.profile.name}
+                        {member.role === "MODERATOR" ? (
+                          <ShieldCheck className="h-4 w-4 ml-2 text-indigo-500" />
+                        ) : member.role === "ADMIN" ? (
+                          <ShieldAlert className="h-4 w-4 text-rose-500" />
+                        ) : (
+                          ""
+                        )}
+
+                        {/* {roleIconMap[member.role]} */}
                       </div>
                       <div className="text-xs text-zinc-500">
                         {member.profile.email}
