@@ -1,4 +1,6 @@
 "use client";
+
+import qs from "query-string";
 import {
   Dialog,
   DialogContent,
@@ -57,6 +59,13 @@ export default function MembersModal() {
   ) => {
     try {
       setLoadingId(memberId);
+      const url = qs.stringifyUrl({
+        url: `/api/members/${memberId}`,
+        query: {
+          serverId: server?.id,
+          memberId,
+        },
+      });
     } catch (error) {
       console.log(error);
     } finally {
