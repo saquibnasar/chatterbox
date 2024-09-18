@@ -42,7 +42,7 @@ updatedAt DateTime @updatedAt
 @@index([profileId])
 }
 // CREATE TABLE MemberRole (
-// pType      TEXT CHECK( pType IN ('ADMIN','MODERATER','GUEST') )   NOT NULL DEFAULT 'M',
+// pType      TEXT CHECK( pType IN ('ADMIN','MODERATER','GUEST') )   NOT NULL DEFAULT 'GUEST',
 //)
 
 // enum MemberRole{
@@ -68,7 +68,15 @@ updatedAt DateTime @updatedAt
 @@index ([serverId])
 }
 
+// CREATE TABLE ChannelType (
+// Type   TEXT CHECK( pType IN ('TEXT','AUDIO','VIDEO') )   NOT NULL DEFAULT 'TEXT',
+// )
 
+// enums ChannelType {
+// TEXT
+// AUDIO 
+// VIDEO
+// }
 
 model Channel {
 id String @id @default(uuid())
@@ -87,8 +95,3 @@ updatedAt DateTime @updatedAt
 @@index ([profileId])
 @@index ([serverId])
 }
-// enums ChannelType {
-// TEXT
-// AUDIO 
-// VIDEO
-// }
