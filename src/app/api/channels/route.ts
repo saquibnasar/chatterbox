@@ -13,7 +13,7 @@ export async function POST(req: Request) {
       return new NextResponse("Unauthorized", { status: 401 });
     }
 
-    if (name == -"general") {
+    if (name === "general") {
       return new NextResponse("Name cannot be 'general'", { status: 400 });
     }
 
