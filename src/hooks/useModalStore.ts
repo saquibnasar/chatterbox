@@ -6,7 +6,8 @@ export type ModalTypes =
   | "editServer"
   | "members"
   | "createChannel"
-  | "leaveServer";
+  | "leaveServer"
+  | "deleteServer";
 type MoadlData = {
   server?: Server;
 };
