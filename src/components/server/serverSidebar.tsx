@@ -16,8 +16,8 @@ const iconMap = {
 };
 const roleIconMap = {
   GUEST: null,
-  AUDIO: <ShieldCheck className="mr-2 h-4 w-4 text-indigo-500" />,
-  VIDEO: <ShieldAlert className="mr-2 h-4 w-4 text-indigo-500" />,
+  MODERATOR: <ShieldCheck className="mr-2 h-4 w-4 text-indigo-500" />,
+  ADMIN: <ShieldAlert className="mr-2 h-4 w-4 text-rose-500" />,
 };
 export default async function ServerSidebar({ serverId }: serverSidebarProps) {
   const profile = await currentProfile();
@@ -78,40 +78,40 @@ export default async function ServerSidebar({ serverId }: serverSidebarProps) {
             <ServerSearch
               data={[
                 {
-                  lebel: "Text Chennels",
+                  label: "Text Chennels",
                   type: "channel",
-                  data: textChannels?.map((channel) => {
-                    id: channel.id;
-                    name: channel.name;
-                    icon: iconMap[channel.type];
-                  }),
+                  data: textChannels?.map((channel) => ({
+                    id: channel.id,
+                    name: channel.name,
+                    icon: iconMap[channel.type],
+                  })),
                 },
                 {
-                  lebel: "Voice Chennels",
+                  label: "Voice Chennels",
                   type: "channel",
-                  data: audioChannels?.map((channel) => {
-                    id: channel.id;
-                    name: channel.name;
-                    icon: iconMap[channel.type];
-                  }),
+                  data: audioChannels?.map((channel) => ({
+                    id: channel.id,
+                    name: channel.name,
+                    icon: iconMap[channel.type],
+                  })),
                 },
                 {
-                  lebel: "Vidio Chennels",
+                  label: "Vidio Chennels",
                   type: "channel",
-                  data: audioChannels?.map((channel) => {
-                    id: channel.id;
-                    name: channel.name;
-                    icon: iconMap[channel.type];
-                  }),
+                  data: videoChannels?.map((channel) => ({
+                    id: channel.id,
+                    name: channel.name,
+                    icon: iconMap[channel.type],
+                  })),
                 },
                 {
-                  lebel: "Members",
+                  label: "Members",
                   type: "member",
-                  data: members?.map((member) => {
-                    id: member.id;
-                    name: member.profile.name;
-                    icon: roleIconMap[member.role];
-                  }),
+                  data: members?.map((member) => ({
+                    id: member.id,
+                    name: member.profile.name,
+                    icon: roleIconMap[member.role],
+                  })),
                 },
               ]}
             />
