@@ -6,7 +6,6 @@ import { useModal } from "@/hooks/useModalStore";
 
 type serverSidebarProps = {
   label: string;
-  // only things you pass are these things
   role?: "GUEST" | "MODERATOR" | "ADMIN" | string;
   sectionType: "channels" | "members";
   channelType?: "TEXT" | "AUDIO" | "VIDEO";
@@ -20,6 +19,7 @@ export default function ServerSection({
   server,
 }: serverSidebarProps) {
   const { onOpen } = useModal();
+  console.log(server);
   return (
     <>
       <div className="flex items-center justify-between py-2">
@@ -37,10 +37,11 @@ export default function ServerSection({
             </button>
           </ActionTooltip>
         )}
+
         {role === "ADMIN" && sectionType === "members" && (
-          <ActionTooltip label="Create Channel" side="top">
+          <ActionTooltip label="Mange Members" side="top">
             <button
-              onClick={() => onOpen("members", server)}
+              onClick={() => onOpen("members", { server })}
               className="text-zinc-500 hover:text-zinc-600 dark:text-zinc-400 dark:hover:text-zinc-300 transition"
             >
               <Settings calcMode="h-4 w-4" />
