@@ -14,12 +14,12 @@ import ServerMember from "./serverMember";
 type serverSidebarProps = {
   serverId: string;
 };
-const iconMap = {
+const iconMap: any = {
   TEXT: <Hash className="mr-2 h-4 w-4" />,
   AUDIO: <Mic className="mr-2 h-4 w-4" />,
   VIDEO: <Video className="mr-2 h-4 w-4" />,
 };
-const roleIconMap = {
+const roleIconMap: any = {
   GUEST: null,
   MODERATOR: <ShieldCheck className="mr-2 h-4 w-4 text-indigo-500" />,
   ADMIN: <ShieldAlert className="mr-2 h-4 w-4 text-rose-500" />,
@@ -198,7 +198,11 @@ export default async function ServerSidebar({ serverId }: serverSidebarProps) {
 
                 <div className="space-y-[2px]">
                   {members.map((member) => (
-                    <ServerMember key={member.id} />
+                    <ServerMember
+                      key={member.id}
+                      server={server}
+                      member={member}
+                    />
                   ))}
                 </div>
               </div>

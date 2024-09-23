@@ -22,7 +22,7 @@ import {
   ShieldCheck,
   ShieldQuestion,
 } from "lucide-react";
-import { ReactElement, useState } from "react";
+import { useState } from "react";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -37,12 +37,7 @@ import {
 import { useRouter } from "next/navigation";
 import axios from "axios";
 
-interface types {
-  GUEST: null;
-  MODERATOR: ReactElement;
-  ADMIN: ReactElement;
-}
-const roleIconMap: types = {
+const roleIconMap: any = {
   GUEST: null,
   MODERATOR: <ShieldCheck className="h-4 w-4 ml-2 text-indigo-500" />,
   ADMIN: <ShieldAlert className="h-4 w-4 text-rose-500" />,
@@ -125,7 +120,7 @@ export default function MembersModal() {
                           ""
                         )}
 
-                        {/* {roleIconMap[member.role]} */}
+                        {roleIconMap[member.role]}
                       </div>
                       <div className="text-xs text-zinc-500">
                         {member.profile.email}
