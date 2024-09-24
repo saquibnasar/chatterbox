@@ -15,8 +15,9 @@ import axios from "axios";
 import { useRouter } from "next/navigation";
 
 export default function DeleteChannelModal() {
-  const router = useRouter();
   const { isOpen, onClose, type, data, onOpen } = useModal();
+
+  const router = useRouter();
 
   const isModalOpen = isOpen && type === "deleteChannel";
   const { server, channel } = data;
@@ -26,10 +27,16 @@ export default function DeleteChannelModal() {
   const onClick = async () => {
     try {
       setIsLoading(true);
-      await axios.delete(`/api/servers/${server?.id}`);
-      onClose();
+      const url = qs.stringifyUrl({
+        url: `/api/channels/${channel?.id}`,
+        query: {
+          serverId: server?.id,
+        },
+      });
+      await axios.delete(url);
       router.refresh();
-      router.push("/");
+      router.push(`/servers/${server?.id}`);
+      onClose();
     } catch (error) {
       console.log(error);
     } finally {

@@ -38,37 +38,39 @@ const formSchema = z.object({
     }),
   type: z.enum(["TEXT", "AUDIO", "VIDEO"]),
 });
-export default function CreateChannelModal() {
+export default function EditChannelModal() {
   const { isOpen, onClose, type, data } = useModal();
   const router = useRouter();
   const params = useParams();
 
-  const isModalOpen = isOpen && type === "createChannel";
-  const { channelType } = data;
+  const isModalOpen = isOpen && type === "editChannel";
+  const { channel, server } = data;
 
   const form = useForm({
     resolver: zodResolver(formSchema),
     defaultValues: {
       name: "",
-      type: "Text",
+      type: "",
     },
   });
 
   useEffect(() => {
-    if (channelType) form.setValue("type", channelType);
-    else form.setValue("type", "TEXT");
-  }, [channelType, form]);
+    if (channel) {
+      form.setValue("name", channel.name);
+      form.setValue("type", channel.type);
+    } else form.setValue("type", "TEXT");
+  }, [form, channel]);
   const isLoading = form.formState.isSubmitting;
 
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
     try {
       const url = qs.stringifyUrl({
-        url: `/api/channels`,
+        url: `/api/channels/${channel?.id}`,
         query: {
-          serverId: params.serverId,
+          serverId: server?.id,
         },
       });
-      await axios.post(url, values);
+      await axios.patch(url, values);
       router.refresh();
       router.push(`/servers/${params?.serverId}`);
       onClose();
@@ -89,7 +91,7 @@ export default function CreateChannelModal() {
         <DialogContent className="bg-white text-black p-0 overflow-hidden">
           <DialogHeader className="pt-8 px-6">
             <DialogTitle className="text-2xl text-center font-bold">
-              Create Channel
+              Edit Channel
             </DialogTitle>
           </DialogHeader>
           <Form {...form}>
@@ -157,7 +159,7 @@ export default function CreateChannelModal() {
               </div>
               <DialogFooter className="bg-gray-100 px-6 py-4">
                 <Button type="submit" variant={"primary"} disabled={isLoading}>
-                  Create
+                  Save
                 </Button>
               </DialogFooter>
             </form>
