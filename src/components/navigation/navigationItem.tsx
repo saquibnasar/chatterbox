@@ -27,7 +27,6 @@ export default function NavigationItem({
       <ActionTooltip side="right" align="center" label={name}>
         <Link
           href={`/servers/${id}`}
-          onClick={() => onClick}
           className="gorup relative flex items-center"
         >
           <div

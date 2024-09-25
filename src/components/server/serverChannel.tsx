@@ -6,6 +6,7 @@ import { Edit, Hash, Lock, Mic, Trash, Video } from "lucide-react";
 import { useParams, useRouter } from "next/navigation";
 import ActionTooltip from "../actionTooltip";
 import { useModal } from "@/hooks/useModalStore";
+import Link from "next/link";
 
 type serverChannelProps = {
   channel: Channel;
@@ -28,9 +29,14 @@ export default function ServerChannel({
 
   const Icon = iconMap[channel.type];
 
+  // const changeroute = () => {
+  //   router.push();
+  // };
   return (
     <>
-      <button
+      <Link
+        href={`/servers/${params?.serverId}/channels/${channel.id}`}
+        // onClick={changeroute}
         className={cn(
           "group px-2 py-2 rounded-md flex items-center gap-x-2 w-full hover:bg-zinc-700/10 dark:hover:bg-zinc-700/50 transition mb-1",
           params?.channelId === channel.id && "bg-zinc-700/20 dark-zinc-700"
@@ -69,7 +75,7 @@ export default function ServerChannel({
         {channel.name === "general" && (
           <Lock className="ml-auto w-4 h-4 text-zinc-500 dark:text:zinc-400" />
         )}
-      </button>
+      </Link>
     </>
   );
 }
