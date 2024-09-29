@@ -65,8 +65,8 @@ messages Messages[]
 DirectMessages DirectMessages[]
 
 
-conversationsInitiated Conversation[] @relation("MemberOne")
-// conversationsReceived Conversation[] @relation("MemberTwo")
+conversationsInitiated Conversation[] @relation("memberOne")
+conversationsReceived Conversation[] @relation("memberTwo")
 
 createdAt DateTime @default (now())
 updatedAt DateTime @updatedAt
