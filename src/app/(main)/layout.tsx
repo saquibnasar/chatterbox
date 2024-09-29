@@ -14,7 +14,7 @@ export default function MainLayout({
   return (
     <>
       <div className="h-full">
-        <div className="md:flex h-full w-[72px] z-30 flex-col fixed inset-y-0">
+        <div className="hidden md:!flex h-full w-[72px] z-30 flex-col fixed inset-y-0">
           {/* hidden cllass add later if problem showing navbar */}
           <NavigationSidebar />
         </div>
