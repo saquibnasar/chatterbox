@@ -17,6 +17,7 @@ export default function MobileToggle({ serverId }: { serverId: string }) {
           <div className="w-[72px]">
             <NavigationSidebar />
           </div>
+          test
           <ServerSidebar serverId={serverId} />
         </SheetContent>
       </Sheet>
