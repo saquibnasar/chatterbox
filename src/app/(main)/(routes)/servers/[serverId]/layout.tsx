@@ -1,7 +1,7 @@
 import ServerSidebar from "@/components/server/serverSidebar";
 import db from "@/db/db";
 import currentProfile from "@/lib/currentProfile";
-import { RedirectToSignIn } from "@clerk/nextjs";
+import { auth } from "@clerk/nextjs/server";
 import { redirect } from "next/navigation";
 
 export default async function ServerIdLayout({
@@ -13,7 +13,7 @@ export default async function ServerIdLayout({
 }) {
   const profile = await currentProfile();
   if (!profile) {
-    return <RedirectToSignIn />;
+    return auth().redirectToSignIn();
   }
 
   const server = await db.server.findUnique({

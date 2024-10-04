@@ -1,10 +1,24 @@
 import db from "@/db/db";
 
-const findConversation = async (memberOneId: string, memberTowId: string) => {
+export const getOrCreateConversation = async (
+  memberOneId: string,
+  memberTwoId: string
+) => {
+  let conversation =
+    (await findConversation(memberOneId, memberTwoId)) ||
+    (await findConversation(memberTwoId, memberOneId));
+
+  if (!conversation) {
+    conversation = await createNewConversation(memberOneId, memberTwoId);
+  }
+  return conversation;
+};
+
+const findConversation = async (memberOneId: string, memberTwoId: string) => {
   try {
     return await db.conversation.findFirst({
       where: {
-        AND: [{ memberOneId: memberOneId }, { memberTwoId: memberTowId }],
+        AND: [{ memberOneId: memberOneId }, { memberTwoId: memberTwoId }],
       },
       include: {
         memberOne: {
@@ -25,12 +39,13 @@ const findConversation = async (memberOneId: string, memberTowId: string) => {
 };
 const createNewConversation = async (
   memberOneId: string,
-  memberTowId: string
+  memberTwoId: string
 ) => {
   try {
-    return await db.conversation.findFirst({
-      where: {
-        AND: [{ memberOneId: memberOneId }, { memberTwoId: memberTowId }],
+    return await db.conversation.create({
+      data: {
+        memberOneId,
+        memberTwoId,
       },
       include: {
         memberOne: {

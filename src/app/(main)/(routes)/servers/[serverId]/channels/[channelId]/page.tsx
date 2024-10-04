@@ -1,7 +1,7 @@
 import ChatHeader from "@/components/chat/chatHeader";
 import db from "@/db/db";
 import currentProfile from "@/lib/currentProfile";
-import { RedirectToSignIn } from "@clerk/nextjs";
+import { auth } from "@clerk/nextjs/server";
 import { redirect } from "next/navigation";
 
 type ChannelIdPageProps = {
@@ -13,7 +13,7 @@ type ChannelIdPageProps = {
 export default async function ChannelIdPage({ params }: ChannelIdPageProps) {
   const profile = await currentProfile();
   if (!profile) {
-    return <RedirectToSignIn />;
+    return auth().redirectToSignIn();
   }
   const channel = await db.channel.findFirst({
     where: {
