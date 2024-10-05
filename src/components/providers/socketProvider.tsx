@@ -32,7 +32,22 @@ export default function SocketProvider({
         addTrailingSlash: false,
       }
     );
+    socketInstance.on("connect", () => {
+      setIsConnected(true);
+    });
+    socketInstance.on("disconnect", () => {
+      setIsConnected(false);
+    });
+
+    setSocket(socketInstance);
+    return () => {
+      socketInstance.disconnect();
+    };
   }, []);
 
-  return <div>socketProvider</div>;
+  return (
+    <SocketContext.Provider value={{ socket, isConnected }}>
+      {children}
+    </SocketContext.Provider>
+  );
 }
