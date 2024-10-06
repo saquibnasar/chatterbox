@@ -25,6 +25,7 @@ import {
   SelectValue,
 } from "../ui/select";
 import { useEffect } from "react";
+import React from "react";
 
 const ChannelTypes = z.enum(["TEXT", "AUDIO", "VIDEO"]);
 const formSchema = z.object({
