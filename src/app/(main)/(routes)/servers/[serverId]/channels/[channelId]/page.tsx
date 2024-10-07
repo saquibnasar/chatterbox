@@ -37,6 +37,8 @@ export default async function ChannelIdPage({ params }: ChannelIdPageProps) {
           serverId={channel.serverId}
           type="channel"
         />
+
+        <div>future messages</div>
       </div>
     </>
   );
