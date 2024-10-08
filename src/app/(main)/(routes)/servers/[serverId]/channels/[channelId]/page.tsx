@@ -1,4 +1,5 @@
 import ChatHeader from "@/components/chat/chatHeader";
+import ChatInput from "@/components/chat/chatInput";
 import db from "@/db/db";
 import currentProfile from "@/lib/currentProfile";
 import { auth } from "@clerk/nextjs/server";
@@ -38,7 +39,13 @@ export default async function ChannelIdPage({ params }: ChannelIdPageProps) {
           type="channel"
         />
 
-        <div>future messages</div>
+        <div className="flex-1">future messages</div>
+        <ChatInput
+          name={channel.name}
+          type="channel"
+          apiUrl="/api/socket/messages"
+          query={{ channelId: channel.id, serverId: channel.serverId }}
+        />
       </div>
     </>
   );
