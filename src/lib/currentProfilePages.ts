@@ -4,6 +4,7 @@ import { NextApiRequest } from "next";
 
 export default async function currentProfilePages(req: NextApiRequest) {
   const { userId } = getAuth(req);
+
   if (!userId) {
     return null;
   }
