@@ -34,6 +34,8 @@ export default function MessageFileModal() {
   const { isOpen, onClose, type, data } = useModal();
   const router = useRouter();
 
+  const isModalOpen = isOpen && type === "messageFile";
+
   const form = useForm({
     resolver: zodResolver(formSchema),
     defaultValues: {
