@@ -15,6 +15,8 @@ type MoadlData = {
   server?: Server;
   channel?: Channel;
   channelType?: "TEXT" | "AUDIO" | "VIDEO";
+  apiUrl?: string;
+  query?: Record<string, any>;
 };
 
 type ModalStore = {
