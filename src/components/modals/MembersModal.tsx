@@ -90,6 +90,7 @@ export default function MembersModal() {
       setLoadingId("");
     }
   };
+  const onCLickTEST = () => {};
   return (
     <>
       <Dialog open={isModalOpen} onOpenChange={onClose}>
