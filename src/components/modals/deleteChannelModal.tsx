@@ -18,6 +18,7 @@ export default function DeleteChannelModal() {
   const { isOpen, onClose, type, data, onOpen } = useModal();
 
   const router = useRouter();
+  const test = () => {};
 
   const isModalOpen = isOpen && type === "deleteChannel";
   const { server, channel } = data;
