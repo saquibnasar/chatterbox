@@ -68,7 +68,7 @@ export default function DeleteChannelModal() {
                 Cancel
               </Button>
               <Button disabled={isLoading} onClick={onClick} variant="primary">
-                Confirm
+                Confirm test
               </Button>
             </div>
           </DialogFooter>
