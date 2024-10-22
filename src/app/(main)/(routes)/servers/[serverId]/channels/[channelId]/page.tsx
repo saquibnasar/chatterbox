@@ -1,5 +1,6 @@
 import ChatHeader from "@/components/chat/chatHeader";
 import ChatInput from "@/components/chat/chatInput";
+import ChatMessages from "@/components/chat/chatMessages";
 import db from "@/db/db";
 import currentProfile from "@/lib/currentProfile";
 import { auth } from "@clerk/nextjs/server";
@@ -40,6 +41,8 @@ export default async function ChannelIdPage({ params }: ChannelIdPageProps) {
         />
 
         <div className="flex-1">future messages</div>
+
+        <ChatMessages />
         <ChatInput
           name={channel.name}
           type="channel"
