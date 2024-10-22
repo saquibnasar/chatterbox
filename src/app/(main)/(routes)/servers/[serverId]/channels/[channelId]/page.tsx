@@ -40,9 +40,19 @@ export default async function ChannelIdPage({ params }: ChannelIdPageProps) {
           type="channel"
         />
 
-        <div className="flex-1">future messages</div>
-
-        <ChatMessages />
+        <ChatMessages
+          name={channel.name}
+          member={member}
+          ChatId={channel.id}
+          type="channel"
+          apiUrl="/api/socket/messages"
+          socketQuery={{
+            channelId: channel.id,
+            serverId: channel.serverId,
+          }}
+          paramKey="channelId"
+          paramValue={channel.id}
+        />
         <ChatInput
           name={channel.name}
           type="channel"
