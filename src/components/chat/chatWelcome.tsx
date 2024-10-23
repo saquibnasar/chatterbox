@@ -18,7 +18,8 @@ export default function ChatWelcome({ name, type }: ChatWelcomeProps) {
           </div>
         )}
         <p className="text-xl md:text-3xl font-bold">
-          {type === "channel" ? "welcom to # " : ""}name
+          {type === "channel" ? "welcom to # " : ""}
+          {name}
         </p>
         <p className="text-zinc-600 dark:text-zinc-400 text-sm">
           {type === "channel"

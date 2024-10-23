@@ -10,6 +10,7 @@ import { extractRouterConfig } from "uploadthing/server";
 import { ourFileRouter } from "@/app/api/uploadthing/core";
 import { ModalProvider } from "@/components/providers/modalProvider";
 import SocketProvider from "@/components/providers/socketProvider";
+import QueryProvider from "@/components/providers/queryProvider";
 const inter = Open_Sans({ subsets: ["latin"], variable: "--font-sans" });
 
 export const metadata: Metadata = {
@@ -39,8 +40,8 @@ export default function RootLayout({
 
             <SignedIn>
               <SocketProvider>
-                {children}
                 <ModalProvider />
+                <QueryProvider>{children}</QueryProvider>
               </SocketProvider>
             </SignedIn>
           </ThemeProvider>
