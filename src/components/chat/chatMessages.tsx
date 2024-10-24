@@ -28,6 +28,7 @@ export default function ChatMessages({
     <>
       <div className="flex-1 flex flex-col py-4 overflow-y-auto">
         <div className="flex-1">
+          test
           <ChatWelcome type={type} name={name} />
         </div>
       </div>
