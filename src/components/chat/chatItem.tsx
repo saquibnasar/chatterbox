@@ -13,6 +13,7 @@ import { Input } from "../ui/input";
 import { Button } from "../ui/button";
 import qs from "query-string";
 import axios from "axios";
+import { useModal } from "@/hooks/useModalStore";
 
 interface ChatItemProps {
   id: string;
@@ -51,7 +52,7 @@ export default function ChatItem({
   socketQuery,
 }: ChatItemProps) {
   const [isEditing, setIsEditing] = useState(false);
-  const [isDeleting, setisDeleting] = useState(false);
+  const { onOpen } = useModal();
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -137,6 +138,8 @@ export default function ChatItem({
                   src={fileUrl}
                   alt={content}
                   fill
+                  sizes="40x40"
+                  priority // or priority={true}
                   className="object-cover"
                 />
               </a>
@@ -218,7 +221,15 @@ export default function ChatItem({
               </ActionTooltip>
             )}
             <ActionTooltip label="delte">
-              <Trash className="cursor-pointer ml-auto w-4 h-4text-zinc-500 hover:text-zinc-600 dark:hover: text-zinc-300 transition" />
+              <Trash
+                onClick={() =>
+                  onOpen("deleteMessage", {
+                    apiUrl: `${socketUrl}/${id}`,
+                    query: socketQuery,
+                  })
+                }
+                className="cursor-pointer ml-auto w-4 h-4text-zinc-500 hover:text-zinc-600 dark:hover: text-zinc-300 transition"
+              />
             </ActionTooltip>
           </div>
         )}
