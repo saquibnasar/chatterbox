@@ -43,7 +43,7 @@ export default async function ChannelIdPage({ params }: ChannelIdPageProps) {
         <ChatMessages
           name={channel.name}
           member={member}
-          ChatId={channel.id}
+          chatId={channel.id}
           type="channel"
           apiUrl="/api/messages"
           socketUrl="/api/socket/messages"
