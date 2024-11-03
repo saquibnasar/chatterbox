@@ -1,6 +1,4 @@
-// "use client";
 import * as z from "zod";
-// import { ZodReadonly } from "zod";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 
@@ -19,7 +17,6 @@ import FileUpload from "@/components/fileUpload";
 import axios from "axios";
 import { useRouter } from "next/navigation";
 import { useModal } from "@/hooks/useModalStore";
-// import { error } from "console";
 
 const formSchema = z.object({
   name: z.string().min(1, {
@@ -52,7 +49,6 @@ export default function CreateServerModal() {
       form.reset();
       router.refresh();
       onClose();
-      // window.location.reload();
     } catch (error) {
       console.log(error);
     }

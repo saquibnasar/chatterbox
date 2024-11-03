@@ -156,7 +156,6 @@ export default function ChatItem({
                   fill
                   sizes="40x40"
                   priority
-                  // priority={true}
                   className="object-cover"
                 />
               </a>

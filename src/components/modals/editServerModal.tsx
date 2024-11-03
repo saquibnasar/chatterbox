@@ -18,7 +18,6 @@ import axios from "axios";
 import { useRouter } from "next/navigation";
 import { useModal } from "@/hooks/useModalStore";
 import { useEffect } from "react";
-// import { error } from "console";
 
 const formSchema = z.object({
   name: z.string().min(1, {
@@ -51,7 +50,6 @@ export default function EditServerModal() {
       form.reset();
       router.refresh();
       onClose();
-      // window.location.reload();
     } catch (error) {
       console.log(error);
     }

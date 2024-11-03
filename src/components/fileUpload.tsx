@@ -2,9 +2,7 @@
 
 import { UploadButton, UploadDropzone } from "@/lib/uploadThing";
 import "@uploadthing/react/styles.css";
-// import { Uploader } from "@uploadthing/solid";
 import { createUploadthing, type FileRouter } from "uploadthing/next";
-// import type { OurFileRouter } from "@/server/uploadthing";
 import { FileIcon, X } from "lucide-react";
 import Image from "next/image";
 type FileUploadProps = {
