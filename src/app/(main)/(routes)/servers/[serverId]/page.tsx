@@ -5,11 +5,12 @@ import { auth } from "@clerk/nextjs/server";
 import { redirect } from "next/navigation";
 
 type ServerIdPageProps = {
-  params: {
+  params: Promise<{
     serverId: string;
-  };
+  }>;
 };
-export default async function ServerIdPage({ params }: ServerIdPageProps) {
+export default async function ServerIdPage(props: ServerIdPageProps) {
+  const params = await props.params;
   const profile = await currentProfile();
   if (!profile) {
     return auth().redirectToSignIn();

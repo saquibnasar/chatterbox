@@ -9,19 +9,18 @@ import { auth } from "@clerk/nextjs/server";
 import { redirect } from "next/navigation";
 
 type MemberPageIdProps = {
-  params: {
+  params: Promise<{
     memberId: string;
     serverId: string;
-  };
-  searchParams: {
+  }>;
+  searchParams: Promise<{
     video?: boolean;
-  };
+  }>;
 };
 
-export default async function MemberPageId({
-  params,
-  searchParams,
-}: MemberPageIdProps) {
+export default async function MemberPageId(props: MemberPageIdProps) {
+  const searchParams = await props.searchParams;
+  const params = await props.params;
   const profile = await currentProfile();
 
   if (!profile) {

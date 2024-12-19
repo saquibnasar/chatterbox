@@ -8,12 +8,13 @@ import { auth } from "@clerk/nextjs/server";
 import { redirect } from "next/navigation";
 
 type ChannelIdPageProps = {
-  params: {
+  params: Promise<{
     serverId: string;
     channelId: string;
-  };
+  }>;
 };
-export default async function ChannelIdPage({ params }: ChannelIdPageProps) {
+export default async function ChannelIdPage(props: ChannelIdPageProps) {
+  const params = await props.params;
   const profile = await currentProfile();
   if (!profile) {
     return auth().redirectToSignIn();

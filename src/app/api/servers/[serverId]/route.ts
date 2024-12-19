@@ -2,10 +2,8 @@ import db from "@/db/db";
 import currentProfile from "@/lib/currentProfile";
 import { NextResponse } from "next/server";
 
-export async function DELETE(
-  req: Request,
-  { params }: { params: { serverId: string } }
-) {
+export async function DELETE(req: Request, props: { params: Promise<{ serverId: string }> }) {
+  const params = await props.params;
   try {
     const profile = await currentProfile();
     if (!profile) {
@@ -24,10 +22,8 @@ export async function DELETE(
   }
 }
 
-export async function PATCH(
-  req: Request,
-  { params }: { params: { serverId: string } }
-) {
+export async function PATCH(req: Request, props: { params: Promise<{ serverId: string }> }) {
+  const params = await props.params;
   try {
     const profile = await currentProfile();
     const { name, imageUrl } = await req.json();
